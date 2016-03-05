@@ -4,6 +4,11 @@ jQuery.getJSON('users', function(users){
 });
 
 //Check user.
-function checkUser(){
+function checkUser(user){
     //
+    if(user.roll > 4 ){
+        return true;
+    } else {
+        return false;
+    }
 }

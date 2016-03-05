@@ -1,7 +1,7 @@
 //Beolvassuk a szükséges csomagokat.
 var express = require('express');
 var fs = require('fs');
-var itf = require('./my_modules/itf_module');
+//var itf = require('./my_modules/itf_module');
 
 /*var str = 1;
 itf.tu(str, function(err, newStr){
@@ -19,22 +19,27 @@ var staticDir = 'build'
 
 //Létrehozunk egy express server példányt.
 var app = express();
+app.set('view engine', 'jade');
+app.set('views', './src/view');
 
 //Statikus fájlok.
 app.use(express.static(staticDir));
 
 //Express use használat.
 app.use(function(req, res, next){
-   console.log('request url: ',req.url);
+    if(req.headers['x-requested-with'] == 'XMLHttpRequest'){
+        console.log('AJAX kérés folyamatban!');
+    }
     next();
 });
 
  
 //Definiáljuk a server működését.
 app.get('/', function (req, res) {
-    fs.readFile('./' + staticDir + '/index.html','utf8', function(err, data) {
+    /*fs.readFile('./' + staticDir + '/index.html','utf8', function(err, data) {
       res.send(data);
-    });
+    });*/
+    res.render('index', {title: 'Hey', message:'Hello there!'});
 });
 
 //Felhasználó modell.

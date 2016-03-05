@@ -1,6 +1,17 @@
 //Beolvassuk a szükséges csomagokat.
 var express = require('express');
 var fs = require('fs');
+var itf = require('./my_modules/itf_module');
+
+/*var str = 1;
+itf.tu(str, function(err, newStr){
+    if(err){
+        console.error(err);
+    } else{
+        console.log('New string is ', newStr);
+    }
+
+});*/
 
 //Globális változók.
 var port = 3333;
@@ -11,6 +22,13 @@ var app = express();
 
 //Statikus fájlok.
 app.use(express.static(staticDir));
+
+//Express use használat.
+app.use(function(req, res, next){
+   console.log('request url: ',req.url);
+    next();
+});
+
  
 //Definiáljuk a server működését.
 app.get('/', function (req, res) {
@@ -48,7 +66,6 @@ function handleUsers(req, res){
 app.get('/users/:id*?', function(req, res){
    console.log(req.url);
     handleUsers(req, res);
-
 });
 
  

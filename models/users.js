@@ -31,19 +31,34 @@ function setModel(){
 
 //Adatok olvasása a táblából / kollekcióból.
 function read(where, callBack){
-    if(!where)
+    //Paraméter vizsgálata.
+    if(!where){
         where = {};
+    }
+
+    //Adatbázis olvasása
     Users.find(where, function(err, data){
         if(err){
             console.error('Error in query: ', where);
-            if(callBack)
-                callBack({});
-        } else{
-            if(callBack)
-                callBack(data);
+            data= [];
+        }
+        if(callBack){
+            callBack(data);
         }
     });
 }
+
+//Egy dokumentum lekérése.
+function first(where, callBack){
+    read(where, function(data){
+       if(data.length > 0){
+           callBack(data[0]);
+       } else{
+           callBack(null);
+       }
+    });
+}
+
 
 //Új dokumentum beszúrása az adatbázisba.
 function create(document, callBack){
@@ -64,5 +79,6 @@ function create(document, callBack){
 module.exports = {
     setConnection: setConnection,
     read: read,
-    create: create
+    create: create,
+    first: first
 };

@@ -25,8 +25,14 @@ Users.setConnection(mongoose);
 //    console.info("Saved model: ", saved);
 //});
 
-Users.read({}, function(users){
-    console.info("Users: ", users);
+//read -> first.
+//{'role': {$gte:5}}
+Users.first({name: new RegExp('john','i')}, function(user){
+    if(user !== null){
+        console.info("User name: ", user.name);
+    } else{
+        console.info("No user!");
+    }
 });
 
 /*var str = 'ItFactory MeetUp...';

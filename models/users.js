@@ -8,6 +8,9 @@ var Model = function(){
 //Kezeli a megadott táblát. Users
 var db,
     Users;
+
+var mongoose = require('mongoose');
+
 function setConnection(mongodb){
     db = mongodb;
     setModel();
@@ -15,7 +18,9 @@ function setConnection(mongodb){
 
 function setModel(){
     //Kollekció modell.
-    Users = db.model('Users', {
+
+    var Schema = mongoose.Schema;
+    var userSchema = new Schema({
       name: String,
       email: String,
       phone: String,
@@ -25,7 +30,17 @@ function setModel(){
          birthsdate: Date,
          hobby: String
       }
-    }, 'Users');
+    });
+
+      userSchema.statics.isAdmin = function(r,cb){
+          return this.find({role: {$lte: 2}}, cb)
+      };
+
+    Users = db.model('Users',userSchema , 'Users');
+}
+
+function getModel(){
+    return Users;
 }
 
 
@@ -80,5 +95,6 @@ module.exports = {
     setConnection: setConnection,
     read: read,
     create: create,
-    first: first
+    first: first,
+    getModel: getModel
 };

@@ -35,6 +35,11 @@ Users.first({name: new RegExp('john','i')}, function(user){
     }
 });
 
+Users.getModel().isAdmin(2,function(err, data){
+    console.log(err);
+    console.log(data);
+});
+
 /*var str = 'ItFactory MeetUp...';
 itf.tu(str, function(err, newStr){
     if(err){

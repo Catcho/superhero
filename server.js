@@ -1,7 +1,18 @@
 //Beolvassuk a szükséges csomagokat.
 var express = require('express');
 var fs = require('fs');
-var itf = require('./my_modules/itf_module');
+var itf = require('./models/itf');
+
+
+//Kapcsolódás az adatbázishoz.
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+
+//itf tábla model.
+itf.setConnection(mongoose);
+itf.read({ 'name': 'Joe'}, function( data ){
+   console.log(data);
+});
 
 /*var str = 'ItFactory MeetUp...';
 itf.tu(str, function(err, newStr){
@@ -39,16 +50,28 @@ app.get('/', function (req, res) {
     /*fs.readFile('./' + staticDir + '/index.html','utf8', function(err, data) {
       res.send(data);
     });*/
-    res.render('index', {title: 'ItFactory Web Superhero', message:'Hello there!'});
+    handleUsers(req, res, false, function(allUsers){
+        res.render('index', {
+          title: 'ItFactory Web Superhero',
+          message:'Hello there!',
+          users: allUsers
+        });
+    })
 });
 
 //Felhasználó modell.
-function handleUsers(req, res){
+function handleUsers(req, res, next, callBack){
     fs.readFile('./users.json','utf8', function(err, data) {
     if (err) throw err;
         
         //var path = req.url.split('/');
         var users = JSON.parse(data);
+
+        if  (callBack){
+            callBack(users);
+            return;
+        }
+
         var _user = {};
         //Ha nem kaptunk id-t.
         if(!req.params.id){

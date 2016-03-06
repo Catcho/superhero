@@ -14,6 +14,10 @@ function toUpper(str, callbackFn){
 
 }
 
+//Szükséges modulok.
+
+
+
 //Publikus elemek.
 module.exports = {
   tu: toUpper

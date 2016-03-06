@@ -6,12 +6,23 @@ var itf = require('./models/itf');
 
 //Kapcsolódás az adatbázishoz.
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/superhero');
 
 //itf tábla model.
-itf.setConnection(mongoose);
-itf.read({ 'name': 'Joe'}, function( data ){
-   console.log(data);
+var Users = require('./models/users');
+Users.setConnection(mongoose);
+Users.create({
+      name: 'John Doe',
+      email: 'john.doe@gmail.com',
+      phone: '+3614567893',
+      address: '1122 Budapest, Kiss u. 10',
+      role: 3,
+      meta: {
+         birthsdate: new Date('1991-04-07'),
+         hobby: 'golf'
+      }
+}, function(saved){
+    console.info("Saved model: ", saved);
 });
 
 /*var str = 'ItFactory MeetUp...';

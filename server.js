@@ -25,6 +25,26 @@ Users.setConnection(mongoose);
 //    console.info("Saved model: ", saved);
 //});
 
+//Dokumentum törlése.
+Users.getModel().remove({'name': new RegExp('jack','i')}, function(err, removed){
+   if(err)
+       console.error(err);
+    else{
+        console.log(removed.result);
+    }
+});
+
+//Dokumentum frissítése.
+Users.getModel().update(
+    {name: new RegExp('jason', 'i')},
+    {girlFriend: 'Mariann'},
+    function(err, user){
+        if(err)
+            console.error(err);
+    }
+);
+
+//Első találat a feltételek alapján.
 //read -> first.
 //{'role': {$gte:5}}
 Users.first({name: new RegExp('john','i')}, function(user){
@@ -35,6 +55,7 @@ Users.first({name: new RegExp('john','i')}, function(user){
     }
 });
 
+//Adminok visszaadása.
 Users.getModel().isAdmin(2,function(err, data){
     console.log(err);
     console.log(data);

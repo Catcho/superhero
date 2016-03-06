@@ -11,18 +11,22 @@ mongoose.connect('mongodb://localhost/superhero');
 //itf tábla model.
 var Users = require('./models/users');
 Users.setConnection(mongoose);
-Users.create({
-      name: 'John Doe',
-      email: 'john.doe@gmail.com',
-      phone: '+3614567893',
-      address: '1122 Budapest, Kiss u. 10',
-      role: 3,
-      meta: {
-         birthsdate: new Date('1991-04-07'),
-         hobby: 'golf'
-      }
-}, function(saved){
-    console.info("Saved model: ", saved);
+//Users.create({
+//      name: 'John Doe',
+//      email: 'john.doe@gmail.com',
+//      phone: '+3614567893',
+//      address: '1122 Budapest, Kiss u. 10',
+//      role: 3,
+//      meta: {
+//         birthsdate: new Date('1991-04-07'),
+//         hobby: 'golf'
+//      }
+//}, function(saved){
+//    console.info("Saved model: ", saved);
+//});
+
+Users.read({}, function(users){
+    console.info("Users: ", users);
 });
 
 /*var str = 'ItFactory MeetUp...';

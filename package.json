@@ -15,7 +15,8 @@
         "grunt-contrib-clean": "1.0.0",
         "grunt-contrib-jshint": "1.0.0",
         "grunt-contrib-copy": "0.8.2",
-        "grunt-contrib-imagemin": "1.0.0"
+        "grunt-contrib-imagemin": "1.0.0",
+        "grunt-run-node": "0.1.3"
     },
     "desciption": "My first test package.",
     "license": "MIT"

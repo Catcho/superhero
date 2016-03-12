@@ -7,7 +7,9 @@ var Model = function(){
 //Mongodb adatmodell.
 //Kezeli a megadott táblát. Users
 var db,
-    Users;
+    Users,
+    //Orders,
+    models = {};
 
 var mongoose = require('mongoose');
 
@@ -19,6 +21,7 @@ function setConnection(mongodb){
 function setModel(){
     //Kollekció modell.
 
+    //Users schema.
     var Schema = mongoose.Schema;
     var userSchema = new Schema({
       name: String,
@@ -29,7 +32,10 @@ function setModel(){
       meta: {
          birthsdate: Date,
          hobby: String
-      }
+        }//,
+//        orders:[
+//            {type: Schema.Types.ObjectId, ref: 'Orders'}
+//        ]
     });
 
       userSchema.statics.isAdmin = function(r,cb){
@@ -37,10 +43,30 @@ function setModel(){
       };
 
     Users = db.model('Users',userSchema , 'Users');
+
+    //Order schema.
+//    var orderSchema = new Schema({
+//        _creator: {type: Schema.Types.ObjectId, ref: 'Users'},
+//        insDate: Date,
+//        description: String,
+//        product: String,
+//        amount: Number,
+//        deadLine: Date
+//    });
+//
+//    Orders = db.model('Orders', orderSchema, 'Orders');
+
+    models['Users'] = Users;
+    //models['Orders'] = Orders;
 }
 
-function getModel(){
-    return Users;
+function getModel( modelName){
+        if(!modelName)
+        {
+            return Users;
+        }else {
+            return models[modelName];
+        }
 }
 
 

@@ -61,6 +61,22 @@ Users.getModel().isAdmin(2,function(err, data){
     console.log(data);
 });
 
+//Rendelés mentése adott felhasználóhoz.
+//Users.first({name: new RegExp('john','i')}, function(user){
+//    if(user !== null){
+//        var order = new Users.getModel('Orders');
+//        order._creator = user._id;
+//        order.insDate: new Date();
+//        order.description= 'Ez az első rendelésed, gratulálunk.';
+//        order.product='Vasaló';
+//        order.amount= 9900;
+//        order.deadLine= new Date('2016-04-10');
+//        order.save();
+//    } else{
+//        console.info("No user!");
+//    }
+//});
+
 /*var str = 'ItFactory MeetUp...';
 itf.tu(str, function(err, newStr){
     if(err){

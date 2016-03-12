@@ -8,7 +8,11 @@ module.exports = function(grunt) {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       build: {
-        src: 'src/**/*.js',
+        src: ['src/vendor/jquery/dist/jquery.min.js',
+              'src/vendor/bootstrap/dist/js/bootstrap.min.js',
+              'src/vendor/angular/angular.min.js',
+              'src/js/*.js'
+              ],
         dest: 'build/js/all.js'
       }
     },
@@ -27,6 +31,7 @@ module.exports = function(grunt) {
         files: [
           // includes files within path 
           {expand: true, cwd: "src/",src: ['**/*.html', 'img/*'], dest: 'build/', filter: 'isFile'},
+          {expand: true, cwd: "src/",src: ['vendor/**'], dest: 'build/'}
         ]
       }
     },

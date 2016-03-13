@@ -1,8 +1,9 @@
 {
     "name": "superhero",
     "dependencies": {
-        "angular": "~1.5.1-build.4662+sha.7ecfa5d",
-        "bootstrap": "~3.3.6",
-        "jquery": "2.2.1"
+        "angular": "1.5.0",
+        "bootstrap": "3.3.6",
+        "jquery": "2.2.1",
+        "angular-currency-filter": "https://github.com/cherryApp/angular-currency-filter.git"
     }
 }

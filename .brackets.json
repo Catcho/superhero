@@ -1,0 +1,11 @@
+{
+    "jscodehints.detectedExclusions": [
+        "F:/superhero/build/vendor/jquery/src/var/indexOf.js",
+        "F:/superhero/build/vendor/jquery/src/var/deletedIds.js",
+        "F:/superhero/src/vendor/jquery/src/selector-sizzle.js",
+        "F:/superhero/build/vendor/jquery/src/var/document.js",
+        "F:/superhero/build/vendor/jquery/src/var/class2type.js",
+        "F:/superhero/build/vendor/jquery/src/wrap.js",
+        "F:/superhero/src/vendor/jquery/src/selector.js"
+    ]
+}

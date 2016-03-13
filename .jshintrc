@@ -2,9 +2,10 @@
   "curly": true,
   "eqnull": true,
   "eqeqeq": true,
-  "undef": true,
+  "undef": false,
   "globals": {
     "jQuery": true,
-      "$": true
+    "$": true,
+    "angular": true
   }
 }

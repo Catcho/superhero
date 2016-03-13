@@ -102,7 +102,10 @@ app.use(express.static(staticDir));
 //Express use használat.
 app.use(function(req, res, next){
     if(req.headers['x-requested-with'] == 'XMLHttpRequest'){
-        console.log('AJAX kérés folyamatban!');
+        //console.log('AJAX kérés folyamatban!');
+        Users.getModel().find({}, function(err, data){
+            res.send(JSON.stringify(data));
+        });
     }
     next();
 });
@@ -148,7 +151,7 @@ function handleUsers(req, res, next, callBack){
         }
         
         
-    res.send(JSON.stringify(_user)); 
+    //res.send(JSON.stringify(_user));
     });    
 }
 

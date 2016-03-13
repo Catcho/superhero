@@ -13,6 +13,7 @@ module.exports = function(grunt) {
               'src/vendor/angular/angular.js',
               'src/vendor/angular-currency-filter/currencyModule.js',
               'src/js/main.js',
+              'src/js/factory/*.js',
               'src/js/controllers/*.js'
               ],
         dest: 'build/js/all.js'
@@ -20,7 +21,7 @@ module.exports = function(grunt) {
     },
     watch: {
       scripts: {
-        files: ['src/**/*.js', 'src/**/*.html', 'src/**/*.css', 'src/**/*.jade'],
+        files: ['src/**/*.js', 'src/**/*.html', 'src/**/*.css', 'src/**/*.jade', 'Gruntfile.js'],
         tasks: ['dev'],
         options: {
           spawn: false,

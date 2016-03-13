@@ -3,7 +3,7 @@ extends ./layout.jade
 block content
 
   .container
-    .starter-template
+    .starter-div
       h1= title
       h2= message
       p.lead
@@ -20,10 +20,19 @@ block content
           p Más ára: {{calcOtherPrice(yourPrice) | currencyFilter}}
           p Teljes ár: {{yourPrice | currencyFilter}}
       .row(data-ng-controller='userController')
-        .col-xs-3
+        .col-xs-12
           p {{yourPrice}}
+          table(class='table table-condesend')
+            thead
+              tr
+                th(data-ng-repeat='th in ["#","name", "email", "phone"]') {{th}}
+            tbody
+              tr(data-ng-repeat='row in users')
+                td {{row._id}}
+                td {{row.name}}
+                td {{row.email}}
+                td {{row.phone}}
 
-      ul
-        each user in users
-          li #{user.id}: #{user.name} - #{user.email}
+        //each user in users
+        //li #{user.id}: #{user.name} - #{user.email}
 

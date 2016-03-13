@@ -24,9 +24,4 @@ superhero.controller("priceController",
         return isNaN( newPrice ) ? 0 : newPrice;
     };
 
-    $http.get('/users')
-        .then(function(data){
-            console.log(data);
-    });
-
 }]);
